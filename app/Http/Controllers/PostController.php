@@ -21,7 +21,7 @@ class PostController extends Controller
         ]);
 
         $body = $request->body;
-        auth()->user()->post()->create([
+        auth()->user()->posts()->create([
             'body' => $body
         ]);
         // Post::create([
