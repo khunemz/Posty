@@ -7,40 +7,46 @@
   <title>Laravel app</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-  <div class="bg-gray-100">
+<body class="bg-gray-100">
+  <div>
     <nav class="p-6 bg-white flex justify-between mb-6">
       <ul class="flex items-center">
         <li>
-          <a class="p-3" href="">Home</a>
+          <a class="p-3" href="/">Home</a>
         </li>
         <li>
-          <a class="p-3" href="">Dashboard</a>
+          <a class="p-3" href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li>
-          <a class="p-3" href="">Post</a>
+          <a class="p-3" href="{{ route('posts') }}">Post</a>
         </li>
       </ul>
 
       <ul class="flex items-center">
-        @if(auth()->user())
+        @auth
           <li>
-            <a class="p-3" href="">Chutipong</a>
+            <a class="p-3" href="">Logged in as : {{ auth()->user()->username}}</a>
           </li>
           <li>
-            <a class="p-3" href="">Logout</a>
+            <form action="{{ route('logout') }}" method="post" class="inline">
+              @csrf
+              <button type="submit">Logout</button>
+            </form>
           </li>
-        @else
+        @endauth
+        @guest
           <li>
-            <a class="p-3" href="">Login</a>
+            <a class="p-3" href="{{ route('login') }}">Login</a>
           </li>
           <li>
-            <a class="p-3" href="{{route('register')}}">Register</a>
+            <a class="p-3" href="{{ route('register') }}">Register</a>
           </li>
-        @endif
+        @endguest
       </ul>
     </nav>
-    @yield('content')
+    <div class="content">
+      @yield('content')
+    </div>
   </div>
 </body>
 </html>

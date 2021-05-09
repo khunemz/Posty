@@ -34,7 +34,7 @@
               <label for="email" class="sr-only">Email : </label>
               <input type="text" name="email" id="email" placeholder="Your email"
               class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{old('email')}}"" />
-              @error('username')
+              @error('email')
                 <div class="text-red-500 mt-2 text-small">
                   {{ $message }}
                 </div>
