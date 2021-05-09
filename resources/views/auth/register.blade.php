@@ -6,11 +6,17 @@
           Register
 
           <form action="{{ route('register')}}" method="post">
-            
+            @csrf
             <div class="mb-4">
                 <label for="name" class="sr-only">Name : </label>
                 <input type="text" name="name" id="name" placeholder="your name"
                 class="bg-gray-100 border-2 w-full p-4 rounded-lg" value="" />
+
+                @error('name')
+                    <div class="text-red-500 mt-2 text-small">
+                      {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-4">
